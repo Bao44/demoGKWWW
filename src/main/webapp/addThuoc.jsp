@@ -9,7 +9,8 @@
 <html>
 <head>
     <title>Add Thuoc</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css.css">
 </head>
 <body>
 
@@ -22,9 +23,7 @@
     <a href="action?action=danhSachLoaiThuoc">Danh sách các loại thuốc</a> |
     <a href="action?action=danhSachThuoc">Danh sách các thuốc</a>
 </div>
-
-<h3>Them thuoc</h3>
-<div>
+<div class="form">
     <h1>Nhap thong tin Thuoc moi</h1>
     <form action="action?action=addThuoc" method="post">
         <label>Ma Thuoc</label>
@@ -37,7 +36,7 @@
         <input type="text" name="GIA" placeholder="nhap gia"/><br>
         <label>Ma loai</label>
         <input type="text" name="MALOAI" placeholder="nhap ma loai"/><br>
-        <button type="submit" id="addBtn"> Them thuốc </button>
+        <button type="submit" class="addBtn"> Them thuốc </button>
     </form>
 </div>
 </body>

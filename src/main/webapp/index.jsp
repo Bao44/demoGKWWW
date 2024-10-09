@@ -3,7 +3,8 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+<%--    <link rel="stylesheet" type="text/css" href="style.css">--%>
+    <link rel="stylesheet" type="text/css" href="css.css">
 </head>
 <body>
 <h1 class="header">
