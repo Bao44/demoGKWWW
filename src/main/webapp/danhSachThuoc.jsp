@@ -10,15 +10,55 @@
 <html>
 <head>
     <title>Danh Sách Thuốc</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
+<h1 class="header">
+    21017351 - Truơng Quốc Bảo
+</h1>
+<br/>
+<div class="nav">
+    <a href="index.jsp">Trang chủ</a> |
+    <a href="action?action=danhSachLoaiThuoc">Danh sách các loại thuốc</a> |
+    <a href="addThuoc.jsp"> Thêm mới thuốc </a>
+</div>
+
 <%
     List<Thuoc> danhSachThuoc = (List<Thuoc>) session.getAttribute("danhSachThuoc");
 %>
-<h2>Danh sách thuốc</h2>
-<% for (Thuoc thuoc : danhSachThuoc) { %>
-<div><%= thuoc %>
+<div class="container-dashboard">
+    <h1>Danh sách thuốc</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Mã thuốc</th>
+            <th>Tên thuốc</th>
+            <th>Nam san xuat</th>
+            <th>Gia</th>
+            <th>Mã loại</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (Thuoc thuoc : danhSachThuoc) { %>
+        <tr>
+
+            <td><%=thuoc.getMaThuoc()%>
+            </td>
+            <td><%=thuoc.getTenThuoc()%>
+            </td>
+            <td><%=thuoc.getNamsx()%>
+            </td>
+            <td><%=thuoc.getDonGia()%>
+            </td>
+            <td><%=thuoc.getLoaiThuoc().getMaLoai()%>
+        </tr>
+        <%}%>
+        </tbody>
+    </table>
 </div>
-<% } %>
 </body>
 </html>
+
+
+

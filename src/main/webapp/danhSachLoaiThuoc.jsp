@@ -10,16 +10,45 @@
 <html>
 <head>
     <title>Danh sách các loại thuốc</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<% List<LoaiThuoc> list = (List<LoaiThuoc>) session.getAttribute("danhSachLoaiThuoc"); %>
-<h2>Danh sách loại thuôc</h2>
-<% for (LoaiThuoc loaiThuoc : list) { %>
-<div>
-    <a href="action?action=danhSachThuocTheoLoai&MALOAI=<%= loaiThuoc.getMaLoai() %>">
-        <%= loaiThuoc %>
-    </a>
+
+<h1 class="header">
+    21017351 - Truơng Quốc Bảo
+</h1>
+<br/>
+<div class="nav">
+    <a href="index.jsp">Trang chủ</a> |
+    <a href="action?action=danhSachThuoc">Danh sách các thuốc</a> |
+    <a href="addThuoc.jsp"> Thêm mới thuốc </a>
 </div>
-<% } %>
+
+<% List<LoaiThuoc> list = (List<LoaiThuoc>) session.getAttribute("danhSachLoaiThuoc"); %>
+<div class="container-dashboard">
+    <h1>Danh sách loại thuốc</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Mã loại thuốc</th>
+            <th>Tên loại thuốc</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (LoaiThuoc loaiThuoc : list) { %>
+        <tr>
+
+            <td><a href="action?action=danhSachThuocTheoLoai&MALOAI=<%= loaiThuoc.getMaLoai() %>">
+                <%= loaiThuoc.getMaLoai() %>
+            </a>
+            </td>
+            <td><%=loaiThuoc.getTenLoai()%>
+            </td>
+        </tr>
+        <%}%>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
+
