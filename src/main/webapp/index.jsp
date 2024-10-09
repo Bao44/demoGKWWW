@@ -11,9 +11,9 @@
 </h1>
 <br/>
 <div class="nav">
-    <a href="hello-servlet">Danh sách các loại thuốc</a> |
+    <a href="action?action=danhSachLoaiThuoc">Danh sách các loại thuốc</a> |
     <a href="action?action=danhSachThuoc">Danh sách các thuốc</a> |
-    <a href="hello-servlet"> Thêm mới thuốc </a>
+    <a href="addThuoc.jsp"> Thêm mới thuốc </a>
 </div>
 </body>
 </html>

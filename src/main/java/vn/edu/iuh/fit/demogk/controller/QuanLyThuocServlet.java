@@ -12,6 +12,7 @@ import vn.edu.iuh.fit.demogk.entities.LoaiThuoc;
 import vn.edu.iuh.fit.demogk.entities.Thuoc;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -22,7 +23,32 @@ public class QuanLyThuocServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        HttpSession session = req.getSession(true);
+        String action = req.getParameter("action");
+        switch (action) {
+            case "addThuoc":
+                boolean result = false;
+                Thuoc thuoc = new Thuoc();
+                thuoc.setMaThuoc(req.getParameter("MATHUOC"));
+                thuoc.setTenThuoc(req.getParameter("TENTHUOC"));
+                thuoc.setNamsx(Integer.parseInt(req.getParameter("NAMSX")));
+                thuoc.setDonGia(Double.parseDouble(req.getParameter("GIA")));
+                thuoc.setLoaiThuoc(new LoaiThuoc(req.getParameter("MALOAI")));
+                try {
+                    result = quanLyThuocDAO.addThuoc(thuoc);
+                    System.out.println(result);
+                    if (result) {
+                        PrintWriter out = resp.getWriter();
+                        out.println("<script type=\"text/javascript\"> alert('Them thuoc thanh cong!'); location='index.jsp' </script>");
+                    } else {
+                        PrintWriter out = resp.getWriter();
+                        out.println("<script type=\"text/javascript\"> alert('Them thuoc khong thanh cong!'); location='addThuoc.jsp' </script>");
+                    }
+                } catch (SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
     }
 
     @Override
@@ -46,6 +72,16 @@ public class QuanLyThuocServlet extends HttpServlet {
                     req.getRequestDispatcher("/danhSachLoaiThuoc.jsp").forward(req, resp);
                 } catch (SQLException | ClassNotFoundException e) {
                     throw new ServletException("Error retrieving drug type list", e);
+                }
+                break;
+            case "danhSachThuocTheoLoai":
+                String maLoai = req.getParameter("MALOAI");
+                try {
+                    List<Thuoc> danhSachThuocTheoLoai = quanLyThuocDAO.getAllByLoai(maLoai);
+                    session.setAttribute("danhSachThuocTheoLoai", danhSachThuocTheoLoai);
+                    req.getRequestDispatcher("/danhSachThuocTheoLoai.jsp").forward(req, resp);
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new ServletException("Error retrieving drug list by type", e);
                 }
                 break;
         }

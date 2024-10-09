@@ -45,7 +45,7 @@ public class Thuoc {
         return namsx;
     }
 
-    public void setDonViTinh(int namsx) {
+    public void setNamsx(int namsx) {
         this.namsx = namsx;
     }
 
